@@ -27,12 +27,18 @@ h1 {
     padding: 0;
     box-sizing: border-box;
     font-size: 5rem;
+    overflow: hidden;
+    width: 32rem;
 }
 
 .calcButtons {
     width: 8rem;
     height: 8rem;
     font-size: 3rem;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 #calculator {

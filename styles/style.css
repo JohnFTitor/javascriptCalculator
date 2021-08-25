@@ -1,0 +1,52 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+#display {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 1px solid black;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 5rem;
+}
+
+.calcButtons {
+    width: 8rem;
+    height: 8rem;
+    font-size: 3rem;
+}
+
+#calculator {
+    display: grid;
+    grid-template-rows: 7rem 1fr;
+}
+
+
+#calculator_buttons {
+    background-color: black;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    
+}

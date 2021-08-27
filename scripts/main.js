@@ -7,7 +7,7 @@ function mult(a, b) { return a * b };
 function div(a, b) {
     if (b === 0) {
         alert("Can't divide by zero you dummy");
-        return;
+        return "error";
     }
     return (a / b);
 }
@@ -23,6 +23,16 @@ function operate(operator, num1, num2) {
         case "/":
             return div(num1, num2);
     }
+}
+
+function clearCalculator(){
+    display.textContent = "";
+    displayValue = 0;
+    savedNumber = 0;
+    canOperate = false;
+    canEqual = false;
+    clear = true;
+    firstNumber = true;
 }
 
 
@@ -50,6 +60,7 @@ let firstNumber = true;
 let savedNumber = 0;
 let clear = false;
 let canOperate = false;
+let canEqual = false;
 let previousOperator;
 let operatorValue;
 
@@ -65,22 +76,33 @@ operators.forEach((operator) => {
                 firstNumber = false;
             } else if (display.textContent != "") {
                 savedNumber = operate(previousOperator, savedNumber, displayValue);
-                display.textContent = (Math.round(savedNumber * 1000) / 1000);
-                clear = true;
+                if (savedNumber != "error") {
+                    display.textContent = (Math.round(savedNumber * 1000) / 1000);
+                    clear = true;  
+                } 
             }
-            canOperate = false;
-            previousOperator = operatorValue;
+
+            if (savedNumber == "error") {
+                clearCalculator();
+            } else {
+                canOperate = false;
+                canEqual = true;
+                previousOperator = operatorValue;
+            }
         }
     })
 })
 
 const equal = document.querySelector("#equal");
 equal.addEventListener('click', () => {
-    savedNumber = operate(operatorValue, savedNumber,displayValue);
-    display.textContent = (Math.round(savedNumber * 1000) / 1000);
-    displayValue = savedNumber;
-    firstNumber = true;
-    clear = true;
+    if (canEqual){
+        savedNumber = operate(operatorValue, savedNumber,displayValue);
+        display.textContent = (Math.round(savedNumber * 1000) / 1000);
+        displayValue = savedNumber;
+        firstNumber = true;
+        clear = true;
+        canEqual = false;
+    }
 })
 
 

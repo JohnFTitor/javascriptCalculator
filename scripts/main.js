@@ -26,13 +26,14 @@ function operate(operator, num1, num2) {
 }
 
 function clearCalculator(){
-    display.textContent = "";
     displayValue = 0;
     savedNumber = 0;
     canOperate = false;
     canEqual = false;
+    firstEntry = false;
     clear = true;
     firstNumber = true;
+    display.textContent = "";
 }
 
 
@@ -53,6 +54,9 @@ numberButtons.forEach((number) => {
         console.log(displayValue);
         // console.log(display.textContent);
         canOperate = true;
+        if (firstEntry){
+            canEqual = true;
+        }
     })   
 })
 
@@ -61,6 +65,7 @@ let savedNumber = 0;
 let clear = false;
 let canOperate = false;
 let canEqual = false;
+let firstEntry= false;
 let previousOperator;
 let operatorValue;
 
@@ -85,8 +90,8 @@ operators.forEach((operator) => {
             if (savedNumber == "error") {
                 clearCalculator();
             } else {
+                firstEntry= true;
                 canOperate = false;
-                canEqual = true;
                 previousOperator = operatorValue;
             }
         }
@@ -97,12 +102,20 @@ const equal = document.querySelector("#equal");
 equal.addEventListener('click', () => {
     if (canEqual){
         savedNumber = operate(operatorValue, savedNumber,displayValue);
-        display.textContent = (Math.round(savedNumber * 1000) / 1000);
-        displayValue = savedNumber;
-        firstNumber = true;
-        clear = true;
-        canEqual = false;
+        if (savedNumber == "error") {
+            clearCalculator();
+        }else {
+            display.textContent = (Math.round(savedNumber * 1000) / 1000);
+            displayValue = savedNumber;
+            firstNumber = true;
+            clear = true;
+            canEqual = false;
+            firstEntry = false;
+        }    
     }
 })
+
+const clearButton =document.querySelector("#clear");
+clearButton.addEventListener('click', clearCalculator);
 
 

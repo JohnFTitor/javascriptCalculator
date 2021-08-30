@@ -57,10 +57,10 @@ let firstEntry= false;
 let previousOperator;
 let operatorValue;
 let keyTouch = new Audio("media/keyTouch.mp3");
+let displayValue = 0;
 
 const display = document.querySelector('#display');
 const numberButtons = document.querySelectorAll(".numbers");
-let displayValue = 0;
 numberButtons.forEach((number) => {
     let value  = number.value;
     // console.log(value);
@@ -135,3 +135,18 @@ calcButtons.forEach(calcButton => {
     calcButton.addEventListener('click', () => keyTouch.play());
 });
 
+const dot = document.querySelector("#dot");
+dot.addEventListener('click', () => {
+    if (display.textContent.indexOf(".") == -1){
+        display.textContent += ".";
+        displayValue = parseFloat(display.textContent);
+    }
+})
+
+const backspace = document.querySelector("#backspace");
+backspace.addEventListener('click', () => {
+    let displayArray = display.textContent.split("");
+    displayArray.pop();
+    display.textContent = displayArray.join("");
+    displayValue = parseFloat(display.textContent);
+})

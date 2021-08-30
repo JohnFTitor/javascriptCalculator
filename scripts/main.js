@@ -12,6 +12,14 @@ function div(a, b) {
     return (a / b);
 }
 
+function module(a,b){
+    return a%b;
+}
+
+function square(a,b){
+    return a**(1/b);
+}
+
 function operate(operator, num1, num2) {
     switch (operator) {
         case "+":
@@ -22,7 +30,11 @@ function operate(operator, num1, num2) {
             return mult(num1, num2);
         case "/":
             return div(num1, num2);
-    }
+        case "%":
+            return module(num1,num2);
+        case "sqr":
+            return square(num1, num2);
+    }   
 }
 
 function clearCalculator(){

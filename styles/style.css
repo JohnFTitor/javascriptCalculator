@@ -33,7 +33,7 @@ h1 {
     box-sizing: border-box;
     font-size: 5rem;
     overflow: hidden;
-    width: 32.5rem;
+    width: 100%;
     font-family: 'Roboto Mono', monospace;
     background-color:  rgb(202, 202, 202);
     color: rgb(24, 24, 24);  
@@ -70,6 +70,6 @@ button:hover {
     height: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     border: 0.5px solid black;
 }

@@ -1,3 +1,4 @@
+//Created functions for basic math operations
 function add(a, b) { return a + b };
 
 function subs(a, b) { return a - b };
@@ -20,6 +21,8 @@ function square(a,b){
     return a**(1/b);
 }
 
+
+//defined an operate function that executes the math operations above
 function operate(operator, num1, num2) {
     switch (operator) {
         case "+":
@@ -37,6 +40,7 @@ function operate(operator, num1, num2) {
     }   
 }
 
+//resets the calculator
 function clearCalculator(){
     displayValue = 0;
     savedNumber = 0;
@@ -48,6 +52,7 @@ function clearCalculator(){
     display.textContent = "";
 }
 
+//takes the current display value and adds the entry
 function writeDisplay(value) {
     if (clear) {
         display.textContent = "";
@@ -55,18 +60,19 @@ function writeDisplay(value) {
     }
     display.textContent += value;
     displayValue = parseFloat(display.textContent);
-    console.log(displayValue);
-    // console.log(display.textContent);
     canOperate = true;
+    //this firstEntry variable makes sense for the equal operator not to execute right after an arithmetic operator
+    //but after a statement (like 5*8)
     if (firstEntry){
         canEqual = true;
     }
 }
-
+//recieves an operator and saves its value. This way, if another operator is pressed right after an statement (like 2+5-...), the function 
+//executes the previus operation (2+5), shows the result and so saves the new operator (-). 
 function makeOperation(operator){
     if (canOperate) {
         operatorValue = operator.value;
-        console.log(operatorValue);
+        //this statement allows to save the first number of the operation
         if (firstNumber) {
             savedNumber = displayValue;
             display.textContent = "";
@@ -78,7 +84,7 @@ function makeOperation(operator){
                 clear = true;  
             } 
         }
-
+        //This is the zero division error handler
         if (savedNumber == "error") {
             clearCalculator();
         } else {
@@ -89,6 +95,7 @@ function makeOperation(operator){
     }
 }
 
+//When equal button is pressed, it is the currentOperatorValue the one it's operated. It also resets the variables so the process can continue or be restarted
 function enterEqual(){
     if (canEqual){
         savedNumber = operate(operatorValue, savedNumber,displayValue);
@@ -119,7 +126,7 @@ function displayDot(){
     }
 }
 
-
+//All variable declarations
 let firstNumber = true;
 let savedNumber = 0;
 let clear = false;
@@ -130,12 +137,16 @@ let previousOperator;
 let operatorValue;
 let keyTouch = new Audio("media/keyTouch.mp3");
 let displayValue = 0;
+let operatorsList = ["/", "*", "-", "+"];
+
+
+//Document selectors and adding of event listeners.
 
 const display = document.querySelector('#display');
 const numberButtons = document.querySelectorAll(".numbers");
+
 numberButtons.forEach((number) => {
     let value  = number.value;
-    // console.log(value);
     number.addEventListener('click', () => writeDisplay(value));   
 })
 
@@ -162,8 +173,9 @@ dot.addEventListener('click', displayDot);
 const backspace = document.querySelector("#backspace");
 backspace.addEventListener('click', erase);
 
-let operatorsList = ["/", "*", "-", "+"];
 
+//Keyboard Support at keyup. Uses all the functions created before, but with the keyboard values.
+//Doesn't support clear, sqr and % buttons.
 document.addEventListener('keyup', (event) => {
     keyTouch.play();
     if (operatorsList.includes(event.key)){

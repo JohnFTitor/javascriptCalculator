@@ -6,3 +6,5 @@ Finally, I added EventListeners to the number buttons so they display their valu
 
 30/08/2021: Today I fixed the Equal bug and added the 0 division error to the equal operator. Also, I added the clear button. Added sound effects to the buttons, this sound effects were obtained from https://www.zapsplat.com.
 
+I finished the project by afternoon, adding dot and backSpace button, as well as two other operations. By the end, I added keyboard support for the numbers and basic operations (It sounds for all the keyboard keys though hehe), which works as intented. I can say the version 1.0 of this Calculator is ready, I might come back to it later to improved it. As a project to put into practice my learning so far, it was quite fun and interesting.
+

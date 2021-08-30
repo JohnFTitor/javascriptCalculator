@@ -36,7 +36,15 @@ function clearCalculator(){
     display.textContent = "";
 }
 
-
+let firstNumber = true;
+let savedNumber = 0;
+let clear = false;
+let canOperate = false;
+let canEqual = false;
+let firstEntry= false;
+let previousOperator;
+let operatorValue;
+let keyTouch = new Audio("media/keyTouch.mp3");
 
 const display = document.querySelector('#display');
 const numberButtons = document.querySelectorAll(".numbers");
@@ -60,14 +68,6 @@ numberButtons.forEach((number) => {
     })   
 })
 
-let firstNumber = true;
-let savedNumber = 0;
-let clear = false;
-let canOperate = false;
-let canEqual = false;
-let firstEntry= false;
-let previousOperator;
-let operatorValue;
 
 const operators = document.querySelectorAll(".operators");
 operators.forEach((operator) => {
@@ -118,4 +118,8 @@ equal.addEventListener('click', () => {
 const clearButton =document.querySelector("#clear");
 clearButton.addEventListener('click', clearCalculator);
 
+const calcButtons = document.querySelectorAll(".calcButtons");
+calcButtons.forEach(calcButton => {
+    calcButton.addEventListener('click', () => keyTouch.play());
+});
 

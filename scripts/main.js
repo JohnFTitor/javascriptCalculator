@@ -7,7 +7,7 @@ function mult(a, b) { return a * b };
 
 function div(a, b) {
     if (b === 0) {
-        alert("Can't divide by zero you dummy");
+        alert("Can't divide by zero");
         return "error";
     }
     return (a / b);
